@@ -255,6 +255,10 @@ var Datetime = React.createClass({
 		this.setState({ open: true });
 	},
 
+	closeCalendar: function() {
+		this.setState({ open: false });
+	},
+
 	handleClickOutside: function(){
 		if( this.props.input && this.state.open && !this.props.open ){
 			this.setState({ open: false });
@@ -278,7 +282,7 @@ var Datetime = React.createClass({
 	getComponentProps: function(){
 		var me = this,
 			formats = this.getFormats( this.props ),
-			props = {dateFormat: formats.date, timeFormat: formats.time}
+			props = {dateFormat: formats.date, timeFormat: formats.time, closeCalendar: this.closeCalendar}
 		;
 
 		this.componentProps.fromProps.forEach( function( name ){
