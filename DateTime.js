@@ -217,7 +217,7 @@ var Datetime = React.createClass({
 		this.props.onChange( date );
 	},
 
-	updateSelectedDate: function( e ) {
+	updateSelectedDate: function( e, close ) {
 		var target = e.target,
 			modifier = 0,
 			viewDate = this.state.viewDate,
@@ -244,7 +244,9 @@ var Datetime = React.createClass({
 				selectedDate: date,
 				viewDate: date.clone().startOf('month'),
 				inputValue: date.format( this.state.inputFormat ),
-        open: ("classList" in document.createElement("_"))
+				open: ("classList" in document.createElement("_"))
+			}, function () {
+				if (!this.props.timeFormat && close) { this.closeCalendar(); }
 			});
 		}
 

@@ -2,6 +2,8 @@ var React = require('react'),
 	moment = require('moment')
 ;
 
+var TAB_KEY_CODE = 9;
+
 var DOM = React.DOM;
 var DateTimePickerDays = React.createClass({
 
@@ -17,7 +19,7 @@ var DateTimePickerDays = React.createClass({
 				DOM.tr({ key: 'h'},[
 					DOM.th({ key: 'p', className: 'prev' }, DOM.button({onClick: this.props.subtractTime(1, 'months'), type: 'button' }, '‹')),
 					DOM.th({ key: 's', className: 'switch', onClick: this.props.showView('months'), colSpan: 5, 'data-value': this.props.viewDate.month() }, locale.months( date ) + ' ' + date.year() ),
-					DOM.th({ key: 'n', className: 'next' }, DOM.button({onClick: this.props.addTime(1, 'months'), onBlur: this.handleOnBlur, type: 'button' }, '›'))
+					DOM.th({ key: 'n', className: 'next' }, DOM.button({onClick: this.props.addTime(1, 'months'), onKeyDown: this.handleOnKeyDown, type: 'button' }, '›'))
 				]),
 				DOM.tr({ key: 'd'}, this.getDaysOfWeek( locale ).map( function( day ){ return DOM.th({ key: day, className: 'dow'}, day ); }) )
 			]),
@@ -32,8 +34,10 @@ var DateTimePickerDays = React.createClass({
 		);
 	},
 
-	 handleOnBlur: function( event ) {
-		this.props.closeCalendar();
+	 handleOnKeyDown: function( event ) {
+	 	if (event.keyCode === TAB_KEY_CODE) {
+	 		this.props.closeCalendar();
+	 	}
 	},
 
 	/**
@@ -97,7 +101,7 @@ var DateTimePickerDays = React.createClass({
 				className: classes
 			};
 			if( !disabled )
-				dayProps.onClick = this.props.updateSelectedDate;
+				dayProps.onClick = this.updateSelectedDate;
 
 			days.push( renderer( dayProps, currentDate, selected ) );
 
@@ -110,6 +114,10 @@ var DateTimePickerDays = React.createClass({
 		}
 
 		return weeks;
+	},
+
+	updateSelectedDate: function( event ) {
+		this.props.updateSelectedDate(event, true);
 	},
 
 	renderDay: function( props, currentDate, selectedDate ){
