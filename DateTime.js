@@ -11,24 +11,23 @@ var assign = require('object-assign'),
 
 var TYPES = React.PropTypes;
 var Datetime = React.createClass({
+
 	mixins: [
 		require('react-onclickoutside')
 	],
+
 	viewComponents: {
 		days: DaysView,
 		months: MonthsView,
 		years: YearsView,
 		time: TimeView
 	},
+
 	propTypes: {
-		// value: TYPES.object | TYPES.string,
-		// defaultValue: TYPES.object | TYPES.string,
 		onBlur: TYPES.func,
 		onChange: TYPES.func,
 		locale: TYPES.string,
 		input: TYPES.bool,
-		// dateFormat: TYPES.string | TYPES.bool,
-		// timeFormat: TYPES.string | TYPES.bool,
 		inputProps: TYPES.object,
 		viewMode: TYPES.oneOf(['years', 'months', 'days', 'time']),
 		isValidDate: TYPES.func,
@@ -37,15 +36,15 @@ var Datetime = React.createClass({
 	},
 
 	getDefaultProps: function() {
-		var nof = function(){};
 		return {
 			className: '',
 			defaultValue: '',
 			viewMode: 'days',
 			inputProps: {},
 			input: true,
-			onBlur: nof,
-			onChange: nof,
+			onBlur: function () {},
+			onChange: function () {},
+			required: false,
 			timeFormat: true,
 			dateFormat: true,
 			strictParsing: true
@@ -313,7 +312,7 @@ var Datetime = React.createClass({
 			children = []
 		;
 
-		if( this.props.input ){
+		if (this.props.input) {
 			children = [ DOM.input( assign({
 				key: 'i',
 				type:'text',
@@ -321,6 +320,7 @@ var Datetime = React.createClass({
 				className: 'form-control',
 				onFocus: this.openCalendar,
 				onChange: this.onInputChange,
+				required: this.props.required,
 				value: this.state.inputValue
 			}, this.props.inputProps ))];
 		}
