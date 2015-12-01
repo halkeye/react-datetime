@@ -129,6 +129,12 @@ var Datetime = React.createClass({
 		this.setState( update );
 	},
 
+	handleOnKeyDown: function( e ) {
+		if(e.shiftKey && e.keyCode === 9) {
+  		this.closeCalendar();
+		}
+	},
+
 	onInputChange: function( e ) {
 		var value = e.target == null ? e : e.target.value,
 			localMoment = this.localMoment( value, this.state.inputFormat ),
@@ -311,6 +317,7 @@ var Datetime = React.createClass({
 			children = [ DOM.input( assign({
 				key: 'i',
 				type:'text',
+				onKeyDown: this.handleOnKeyDown,
 				className: 'form-control',
 				onFocus: this.openCalendar,
 				onChange: this.onInputChange,
