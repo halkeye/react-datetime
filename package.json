@@ -1,11 +1,11 @@
 {
-  "name": "react-datetime",
-  "version": "1.3.4",
+  "name": "react-datetime-halkeye",
+  "version": "1.3.5",
   "description": "A lightweight but complete datetime picker React.js component.",
-  "homepage": "https://github.com/arqex/react-datetime",
+  "homepage": "https://github.com/halkeye/react-datetime",
   "repository": {
     "type": "git",
-    "url": "https://github.com/arqex/react-datetime"
+    "url": "https://github.com/halkeye/react-datetime"
   },
   "main": "./DateTime.js",
   "scripts": {
@@ -24,7 +24,7 @@
   "author": "Javier Marquez",
   "license": "MIT",
   "peerDependencies": {
-    "react": ">=0.12",
+    "react": ">=0.14",
     "moment": ">=2.8.1"
   },
   "devDependencies": {
