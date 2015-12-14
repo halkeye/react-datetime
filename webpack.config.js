@@ -22,18 +22,15 @@ module.exports = {
 
   output: {
     path: __dirname + "/dist/",
-    library: 'Datetime',
-    libraryTarget: 'umd',
+    library: 'Datetime'//,
+//    libraryTarget: 'umd',
   },
 
   resolve: {
     extensions: ['', '.js']
   },
 
-  externals: {
-    'react': 'React',
-    'moment': 'moment'
-  },
+  externals: [ 'react', 'react-dom', 'moment' ],
 
   plugins: plugins
 };

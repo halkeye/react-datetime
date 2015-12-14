@@ -41,6 +41,6 @@
   },
   "dependencies": {
     "object-assign": "^3.0.0",
-    "react-onclickoutside": "^0.3.4"
+    "react-onclickoutside": "^4.5.0"
   }
 }
